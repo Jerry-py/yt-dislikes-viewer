@@ -1,7 +1,7 @@
 {
   "name": "YT Dislikes viewer",
   "description": "Resurrect the youtube dislike count, give yourself the ability to enhance your YouTube experience with 'Youtube Dislikes Viewer'.",
-  "version": "1.8.0",
+  "version": "1.8.2",
   "manifest_version": 2,
   "background": {
     "scripts": ["service.js"]
@@ -23,6 +23,8 @@
     "*://*.googleapis.com/youtube/v3/*",
     "storage"
   ],
+  "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js; object-src 'self'",
+
   "icons": {
     "16": "/icons/get_started16.png",
     "32": "/icons/get_started32.png",
