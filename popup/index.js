@@ -79,10 +79,6 @@ function ratioBarCustomisation(e) {
   console.log(e);
 }
 
-(function () {
-  var el = document.querySelector(".tabs");
-  var instance = el.Tabs.init(el, {});
-})();
 document
   .getElementsByClassName("save2")[0]
   .addEventListener("click", ratioBarCustomisation);
