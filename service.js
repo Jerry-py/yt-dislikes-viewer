@@ -23,6 +23,17 @@ function executeScript(tabId) {
     file: "script.js",
   });
 }
+browser.tabs.onActivated.addListener(function (activeInfo) {
+  if (activeInfo.url) {
+    browser.tabs.query({active: true, currentWindow: true},function(tabs) {
+    browser.tabs.sendMessage(activeInfo.tabId, {
+      message: "progressbar",
+      url: activeInfo.url,
+    });
+  });
+  }
+})
+
 browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   // read changeInfo data and do something with it
   // like send the new url to contentscripts.js
