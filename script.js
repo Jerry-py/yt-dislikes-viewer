@@ -1,9 +1,7 @@
-browser.storage.local.get("savedApi", ({ savedApi }) => {
   browser.storage.local.get("primary", ({ primary }) => {
     browser.storage.local.get("secondary", ({ secondary }) => {
       (function () {
-        const YT_API_KEY = savedApi;
-        const BASE_ENDPOINT = "https://www.googleapis.com/youtube/v3";
+        const BASE_ENDPOINT = "https://youtubedislikeviewer.xyz/api/v1/getdata";
 
         const video_id = new URLSearchParams(window.location.search).get("v");
         async function fetch_from_repl(vid) {
@@ -21,6 +19,7 @@ browser.storage.local.get("savedApi", ({ savedApi }) => {
               console.log(error);
             });
         }
+
         async function put_on_repl(vid, count) {
           const url = `https://yt-dislikes-viewer-api.websitedesigne1.repl.co/data/put?video_id=${vid}&dislike_count=${count}`;
           fetch(url)
@@ -85,21 +84,23 @@ browser.storage.local.get("savedApi", ({ savedApi }) => {
           if (!videoId) {
             videoId = new URLSearchParams(window.location.search).get("v");
           }
-          const endpoint = `${BASE_ENDPOINT}/videos?key=${YT_API_KEY}&id=${videoId}&part=statistics`;
+          const endpoint = `${BASE_ENDPOINT}/${videoId}`;
 
           return fetch(endpoint)
             .then((r) => r.json())
             .then(
               (r) =>
                 (values = {
-                  dislikes: parseInt(r.items[0].statistics.dislikeCount),
-                  likes: parseInt(r.items[0].statistics.likeCount),
+                  dislikes: parseInt(r.data.dislikes),
+                  likes: parseInt(r.data.likes),
                 })
             );
         }
         function editDislikes(dislikeNo) {
           let selector;
+
           // Fetch the dislike label
+          // checks for new UI of youtube or Old one
           const selectorOldUi =
             "ytd-menu-renderer.ytd-video-primary-info-renderer > div > :nth-child(2) yt-formatted-string";
           const selectorNewUi =
@@ -115,23 +116,12 @@ browser.storage.local.get("savedApi", ({ savedApi }) => {
           }
 
           const dislikeLabel = document.querySelector(selector);
-
           // Update the label with the new dislike count
           const formattedDislikes = numberToAbbreviatedString(dislikeNo);
           formattedDislikes === "NaN"
             ? (dislikeLabel.textContent = "Disabled")
             : (dislikeLabel.textContent = formattedDislikes);
         }
-
-        // ################# Crashes the extension in FF #################
-        // function getLikes() {
-        //   const count = document
-        //     .querySelector(
-        //       "ytd-menu-renderer.ytd-video-primary-info-renderer > div > :nth-child(1) yt-formatted-string"
-        //     )
-        //     .ariaLabel.replace(/[^\d-]/g, "");
-        //   return parseInt(count);
-        // }
 
         function likePercentage(likeCount, dislikeCount) {
           return (100 * likeCount) / (likeCount + dislikeCount);
@@ -204,23 +194,12 @@ browser.storage.local.get("savedApi", ({ savedApi }) => {
             color.setAttribute("id", "color");
 
             progress.addEventListener("mouseover", () => {
-              //       tooltip.innerHTML = `
-              //   <!--<tp-yt-paper-tooltip position="top" class="" role="tooltip" tabindex="-1" style="left: 25.6833px; bottom: -64px;"><!--css-build:shady-->
-              //   <div id="tooltip" class="style-scope tp-yt-paper-tooltip visible" style="background:#616161; max-width:110px; Position:Absolute; Z-Index: 4">
-              //   ${likes} / ${dislikes}
-              // </tp-yt-paper-tooltip>
-              //   `;
-              tooltip.insertAdjacentHTML(
-                "beforeend",
-                `
-      <!--<tp-yt-paper-tooltip position="top" class="" role="tooltip" tabindex="-1" style="left: 25.6833px; bottom: -64px;"><!--css-build:shady-->
-         <div id="tooltip" class="style-scope tp-yt-paper-tooltip visible" style="background:#616161; max-width:110px; Position:Absolute; Z-Index: 4">
-         ${likes} / ${dislikes}
-       </tp-yt-paper-tooltip>
-      
-      
-      `
-              );
+              tooltip.innerHTML = `
+          <!--<tp-yt-paper-tooltip position="top" class="" role="tooltip" tabindex="-1" style="left: 25.6833px; bottom: -64px;"><!--css-build:shady-->
+          <div id="tooltip" class="style-scope tp-yt-paper-tooltip visible" style="background:#616161; max-width:110px; Position:Absolute; Z-Index: 4">
+          ${likes} / ${dislikes}
+        </tp-yt-paper-tooltip>
+          `;
 
               selector.appendChild(tooltip);
             });
@@ -246,6 +225,5 @@ browser.storage.local.get("savedApi", ({ savedApi }) => {
 
         run();
       })();
-    });
   });
 });
