@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="index.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,13 +11,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script type="text/javascript" src="./utilz/jquery.js"></script>
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
     <!-- <div class="logo">
@@ -34,7 +33,7 @@
   <div class="link-wrap">
     <a class="how link" href="https://blog.hubspot.com/website/how-to-get-youtube-api-key" target="_blank">How to get an API key?</a>
     <a class="discord link" href="https://u.pgamerx.com/discord" target="_blank">Discord Server</a>
-    <a class="donate link" href="https://ko-fi.com/pgamerx" target="_blank">Donate</a>    
+    <a class="donate link" href="https://ko-fi.com/pgamerx" target="_blank">Donate</a>
   </div>
    -->
     <section class="container">
@@ -46,7 +45,7 @@
               <a class="active" href="#Home">Home</a>
             </li>
 
-            <li class="tab col s3"><a href="#Custom">Customization</a></li>
+            <li class="tab col s3"><a href="#Custom">Custom</a></li>
           </ul>
         </div>
         <div id="Home" class="col s12">
@@ -58,13 +57,11 @@
                 <img title="logo" class="logoImg" src="/icons/get_started32.png"/>
                 <span class="logoText" class="">YT Dislikes Viewer</span>
               </div>
-      <div class="divider red accent-1"></div>     
-      <div class="section">
-      </div>
+      <div class="divider red accent-1" style="margin-bottom: 50px;"></div>
               <div class="link-wrap">
                 <a class="waves-effect red btn" href="https://u.pgamerx.com/discord" target="_blank"><i class="material-icons left">chat</i>Support (DISCORD)</a>
                 <a class="waves-effect red btn" href="https://opencollective.com/yt-dislikes-viewer" target="_blank"><i class="material-icons left">attach_money
-</i>Become a sponsor</a>
+                </i>Become a sponsor</a>
               </div>
           </div>
         </div>
@@ -75,7 +72,7 @@
          <img title="logo" class="logoImg" src="/icons/gear.png"/>
          <span class="logoText" class="">Customization</span>
          </div>
-         <div class="divider red accent-1"></div>     
+         <div class="divider red accent-1"></div>
               <div class="section">
                 <h2 class="Header">
                   Ratio Bar
@@ -83,15 +80,15 @@
                 </br>
          <div class="input-field col s6">
           <i class="material-icons prefix">color_lens</i>
-          <input id="icon_prefix" placeholder="Eg: #FFFFFF" type="text" class="validate center-align primary color1"/>              
+          <input id="icon_prefix" placeholder="Eg: #FFFFFF" type="text" class="validate center-align primary color1"/>
           <label for="icon_prefix">Like Color</label>
         </div>
                  <div class="input-field col s6">
           <i class="material-icons prefix">color_lens</i>
-          <input id="icon_prefix" placeholder="Eg: #808080" type="text" class="validate center-align primary color2"/>              
+          <input id="icon_prefix" placeholder="Eg: #808080" type="text" class="validate center-align primary color2"/>
 
           <label for="icon_prefix">Dislike Color</label>
-        </div> 
+        </div>
                   <button class="save2 btn waves-effect red" type="submit" name="action">Save Changes
     <i class="material-icons right">send</i>
   </button>
@@ -100,6 +97,5 @@
          </div>
       </div>
     </section>
-    <script src="index.js" defer></script>
   </body>
 </html>
