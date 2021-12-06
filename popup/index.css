@@ -9,6 +9,10 @@ body {
   text-align: center;
 }
 
+.input-field [type=text] {
+  color: white;
+}
+
 .material-icons{
   display: inline-flex;
   vertical-align: top;
