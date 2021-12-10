@@ -3,6 +3,7 @@
       (function () {
         const BASE_ENDPOINT = "https://youtubedislikeviewer.xyz/api/v1/getdata";
 
+        const BACKUP_ENDPOINT = "https://backup.pgamerx.com/api/v1/getdata"
         const video_id = new URLSearchParams(window.location.search).get("v");
         async function fetch_from_repl(vid) {
           fetch(
@@ -85,7 +86,7 @@
             videoId = new URLSearchParams(window.location.search).get("v");
           }
           const endpoint = `${BASE_ENDPOINT}/${videoId}`;
-
+          const backupend = `${BACKUP_ENDPOINT}/${videoId}`
           return fetch(endpoint)
             .then((r) => r.json())
             .then(
@@ -94,7 +95,18 @@
                   dislikes: parseInt(r.data.dislikes),
                   likes: parseInt(r.data.likes),
                 })
-            );
+            )
+            .catch(err => {
+              return fetch(backupend)
+              .then((r) => r.json())
+              .then(
+                (r) =>
+                  (values = {
+                    dislikes: parseInt(r.data.dislikes),
+                    likes: parseInt(r.data.likes),
+                  })
+              )
+            })
         }
         function editDislikes(dislikeNo) {
           let selector;
