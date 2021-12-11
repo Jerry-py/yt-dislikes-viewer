@@ -1,6 +1,6 @@
 body {
-  overflow: hidden; 
-  height: 350px;
+  /* overflow: hidden; */
+  min-height: 460px;
   width: 350px;
   background-color: #0b0c1b;
   color: #fff;
@@ -9,22 +9,24 @@ body {
   text-align: center;
 }
 
-.input-field [type=text] {
+.input-field [type="text"] {
   color: white;
 }
 
-.material-icons{
+li.is-active {
+  color: red;
+}
+.material-icons {
   display: inline-flex;
   vertical-align: top;
 }
-
-.inputBox{
+.inputBox {
   padding-top: 6px;
 }
 
-#txt1{
-  line-height:24px;
- }
+#txt1 {
+  line-height: 24px;
+}
 .logo {
   display: flex;
   align-items: center;
@@ -40,6 +42,12 @@ body {
   font-size: 20px;
 }
 
+li .is-active {
+  color: red;
+}
+input::placeholder {
+  color: red !important;
+}
 .status {
   padding-bottom: 5px;
 }
@@ -131,4 +139,10 @@ hr.solid {
 .save:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
   transform: translateY(-0.25em);
+}
+.input-field [type="text"] {
+  color: white;
+}
+input::placeholder {
+  color: red !important;
 }
